@@ -5,10 +5,7 @@ function build()
     var boxes = document.getElementsByTagName("box");
     for(var i = 0; i < boxes.length; i++)
     {
-        console.log(boxes[i].className);
-        console.log(fetchBox(boxes[i].className));
-
-        var substitute = fetchBox(boxes[i].className);
+        var substitute = fetchBox(boxes[i].className.replace("box-", ""));
         
         boxes[i].innerHTML = substitute;
 
@@ -27,7 +24,6 @@ function build()
                     }
                 }
             }
-            console.log(item.name + ": " + item.value);
         });
     }
 }
@@ -43,5 +39,10 @@ function fetchBox(boxName)
     }
     xmlhttp.open("GET", "boxes/" + boxName + ".html", false);
     xmlhttp.send();
+    if(xmlhttp.status != 200)
+    {
+        console.error("An error occurred when fetching box '" + boxName + "'.");
+        return "";
+    }
     return xmlhttp.responseText;
 }

@@ -1,6 +1,6 @@
 # wonderbox
 
-Bare-bones templating
+Tiny templating
 
 As simple as `<script type="text/javascript" src="/wbox.min.js"></script>`
 
